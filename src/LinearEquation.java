@@ -30,13 +30,19 @@ public class LinearEquation {
     /* Calculates and returns the y-intercept of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
-
+        double b = y1-(slope()*x1);
+        b = ((int)(b*100))/100.0;
+        return b;
     }
 
 
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
-    public double slope()
+    public double slope() {
+        double slope = (x2-x1)/(y2-y1);
+        slope = ((int)(slope*100))/100.0;
+        return slope;
+    }
 
 
     /* Returns a String that represents the linear equation of the line through points
