@@ -18,11 +18,11 @@ public class LinearEquation {
     }
 
 
-/* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
-   the nearest hundredth */
+    /* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
+       the nearest hundredth */
     public double distance() {
-        double dis = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
-        dis = ((int)(dis*100))/100.0;
+        double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        dis = roundedToHundredth(dis);
         return dis;
     }
 
@@ -30,8 +30,8 @@ public class LinearEquation {
     /* Calculates and returns the y-intercept of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
-        double b = y1-(slope()*x1);
-        b = ((int)(b*100))/100.0;
+        double b = y1 - (slope() * x1);
+        b = roundedToHundredth(b);
         return b;
     }
 
@@ -39,8 +39,8 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope() {
-        double slope = (x2-x1)/(y2-y1);
-        slope = ((int)(slope*100))/100.0;
+        double slope = (x2 - x1) / (y2 - y1);
+        slope = ((int) (slope * 100)) / 100.0;
         return slope;
     }
 
@@ -69,21 +69,47 @@ public class LinearEquation {
         HINT: Absolute value might be helpful for printing negative y-intercepts as
                subtraction!
      */
-    public String equation()
+    public String equation() { //FIX THIS EQUATION METHOD
+        int numerator = y2 - y1;
+        int denominator = x2 - x1;
+        String slopeFrac = "";
+        if (numerator / denominator == ((double) numerator) / ((double) denominator)) {
+            slopeFrac += numerator / denominator;
+        }
+        if ((numerator < 0) && (denominator < 0)) {
+            numerator = Math.abs(numerator);
+            denominator = Math.abs(denominator);
+            slopeFrac += numerator + "/" + denominator;
+        }
+        if (yIntercept() < 0) {
+            return "y= " + slopeFrac + "x " + "- " + Math.abs(yIntercept());
+        } else if (yIntercept() == 0) {
+            return "y= " + slopeFrac + "x";
+        } else {
+            return "y= " + slopeFrac + "x " + "+ " + yIntercept();
+        }
+    }
 
 
     /* Returns a String of the coordinate point on the line that has the given x value, with
        both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
-    public String coordinateForX(double xValue)
-
+    public String coordinateForX(double xValue) {
+        String coord = "";
+        double yval = (slope() * xValue) + yIntercept();
+        yval = roundedToHundredth(yval);
+        coord += "(" + xValue + ", " + yval + ")";
+        return coord;
+    }
 
     /* "Helper" method for use elsewhere in your methods; returns the value toRound rounded
         to the nearest hundredth
 
         HINT:  the Math.round method can help with this!
      */
-    public double roundedToHundredth(double toRound)
-
+    public double roundedToHundredth(double toRound) {
+        double giveVal = Math.round(toRound * 100) / 100.0;
+        return giveVal;
+    }
 
     /* Returns a string that includes all information about the linear equation, each on
        separate lines:
@@ -97,5 +123,16 @@ public class LinearEquation {
       equation(), slope(), yIntercept(), distance().
 
       */
-    public String lineInfo()
+    public String lineInfo() {
+        if ((y2 - y1) == 0) {
+            return "";
+        } else {
+            String coordinates = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")";
+            String equation = "The equation of the line between these points is: " + equation();
+            String slope = "The slope of this line is: " + slope();
+            String yInt = "The y-intercept of the line is: " + yIntercept();
+            String distance = "The distance between the two points is: " + distance();
+            return coordinates + "\n" + equation + "\n" + slope + "\n" + yInt + "\n" + distance;
+        }
+    }
 }
