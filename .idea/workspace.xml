@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="269d7278-f952-435e-9f3a-350fc1bc7121" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LinearEquationRunner.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/LinearEquation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinearEquation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LinearEquationRunner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinearEquationRunner.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,8 +81,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LinearEquationRunner.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="1" />
+          <line>4</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

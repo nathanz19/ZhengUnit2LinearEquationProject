@@ -39,8 +39,8 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope() {
-        double slope = (x2 - x1) / (y2 - y1);
-        slope = ((int) (slope * 100)) / 100.0;
+        double slope = (double)(y2 - y1) / (x2 - x1);
+        slope = roundedToHundredth(slope);
         return slope;
     }
 
@@ -73,13 +73,17 @@ public class LinearEquation {
         int numerator = y2 - y1;
         int denominator = x2 - x1;
         String slopeFrac = "";
-        if (numerator / denominator == ((double) numerator) / ((double) denominator)) {
-            slopeFrac += numerator / denominator;
-        }
         if ((numerator < 0) && (denominator < 0)) {
             numerator = Math.abs(numerator);
             denominator = Math.abs(denominator);
             slopeFrac += numerator + "/" + denominator;
+        } else if (denominator < 0) {
+            slopeFrac += (numerator *-1) + "/" + Math.abs(denominator);
+        } else {
+            slopeFrac += slopeFrac += numerator + "/" + denominator;
+        }
+        if ((numerator * 10 / denominator) == (numerator / denominator) * 10) {
+            slopeFrac = numerator/denominator + "";
         }
         if (yIntercept() < 0) {
             return "y= " + slopeFrac + "x " + "- " + Math.abs(yIntercept());
