@@ -77,13 +77,15 @@ public class LinearEquation {
             numerator = Math.abs(numerator);
             denominator = Math.abs(denominator);
             slopeFrac += numerator + "/" + denominator;
+        } else if (denominator == 0) {
+            slopeFrac = "";
         } else if (denominator < 0) {
             slopeFrac += (numerator *-1) + "/" + Math.abs(denominator);
         } else {
-            slopeFrac += slopeFrac += numerator + "/" + denominator;
+            slopeFrac+= numerator + "/" + denominator;
         }
-        if ((numerator * 10 / denominator) == (numerator / denominator) * 10) {
-            slopeFrac = numerator/denominator + "";
+        if (numerator % denominator == 0) {
+            slopeFrac = numerator / denominator + "";
         }
         if (yIntercept() < 0) {
             return "y= " + slopeFrac + "x " + "- " + Math.abs(yIntercept());
