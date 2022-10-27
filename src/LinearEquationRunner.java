@@ -15,7 +15,8 @@ public class LinearEquationRunner {
         int nx2 = Integer.parseInt(x2);
         int ny1 = Integer.parseInt(y1);
         int ny2 = Integer.parseInt(y2);
-        LinearEquation linearEq = new LinearEquation(nx1,ny1,nx1,ny2);
+        LinearEquation linearEq = new LinearEquation(nx1,ny1,nx2,ny2);
+        System.out.println("----- Line info -----");
         System.out.println(linearEq.lineInfo());
     }
 }

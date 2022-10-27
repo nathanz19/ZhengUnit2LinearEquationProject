@@ -39,7 +39,7 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope() {
-        double slope = (double)(y2 - y1) / (x2 - x1);
+        double slope = ((double)(y2 - y1)) / (x2 - x1);
         slope = roundedToHundredth(slope);
         return slope;
     }
@@ -73,26 +73,51 @@ public class LinearEquation {
         int numerator = y2 - y1;
         int denominator = x2 - x1;
         String slopeFrac = "";
-        if ((numerator < 0) && (denominator < 0)) {
+        double yIntTxt = 0;
+        if (denominator == 0) {
+            slopeFrac += "";
+        } else if((((double)numerator) / denominator) == 1) {
+            slopeFrac += "";
+        } else if ((((double)numerator) / denominator) == -1) {
+            slopeFrac += "-";
+        } else if (numerator % denominator == 0) {
+            slopeFrac += numerator / denominator + "";
+        } else if ((numerator < 0) && (denominator < 0)) {
             numerator = Math.abs(numerator);
             denominator = Math.abs(denominator);
             slopeFrac += numerator + "/" + denominator;
-        } else if (denominator == 0) {
-            slopeFrac = "";
         } else if (denominator < 0) {
             slopeFrac += (numerator *-1) + "/" + Math.abs(denominator);
         } else {
-            slopeFrac+= numerator + "/" + denominator;
-        }
-        if (numerator % denominator == 0) {
-            slopeFrac = numerator / denominator + "";
+            slopeFrac += numerator + "/" + denominator;
         }
         if (yIntercept() < 0) {
-            return "y= " + slopeFrac + "x " + "- " + Math.abs(yIntercept());
+            yIntTxt = Math.abs(yIntercept());
         } else if (yIntercept() == 0) {
-            return "y= " + slopeFrac + "x";
+            yIntTxt = 0;
         } else {
-            return "y= " + slopeFrac + "x " + "+ " + yIntercept();
+            yIntTxt = yIntercept();
+        }
+        if ((((double)numerator)/denominator) == 0) {
+            if (yIntTxt == 0) {
+                return "y = 0";
+            }
+            else if (yIntercept()>0) {
+                return "y = " + yIntTxt;
+            }
+            else {
+                return "y = " + "-" + yIntTxt;
+            }
+        } else {
+            if (yIntTxt == 0) {
+                return "y = " + slopeFrac + "x";
+            }
+            else if (yIntercept() < 0) {
+                return "y = " + slopeFrac + "x" + " - " + yIntTxt;
+            }
+            else {
+                return "y = " + slopeFrac + "x" + " + " + yIntTxt;
+            }
         }
     }
 
@@ -130,7 +155,7 @@ public class LinearEquation {
 
       */
     public String lineInfo() {
-        if ((y2 - y1) == 0) {
+        if ((x2 - x1) == 0) {
             return "";
         } else {
             String coordinates = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")";
