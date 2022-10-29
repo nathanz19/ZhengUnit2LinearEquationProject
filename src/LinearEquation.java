@@ -156,7 +156,7 @@ public class LinearEquation {
       */
     public String lineInfo() {
         if ((x2 - x1) == 0) {
-            return "";
+            return "These points are on a vertical line: x = " + x1;
         } else {
             String coordinates = "The two points are: (" + x1 + ", " + y1 + ") and (" + x2 + ", " + y2 + ")";
             String equation = "The equation of the line between these points is: " + equation();
