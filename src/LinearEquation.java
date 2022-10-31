@@ -21,8 +21,8 @@ public class LinearEquation {
     /* Calculates and returns distance between (x1, y1) and (x2, y2), rounded to
        the nearest hundredth */
     public double distance() {
-        double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
-        dis = roundedToHundredth(dis);
+        double dis = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2)); //Distance Formula
+        dis = roundedToHundredth(dis); //Rounds the answer to the nearest hundredth
         return dis;
     }
 
@@ -30,8 +30,8 @@ public class LinearEquation {
     /* Calculates and returns the y-intercept of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double yIntercept() {
-        double b = y1 - (slope() * x1);
-        b = roundedToHundredth(b);
+        double b = y1 - (slope() * x1); //Y-int
+        b = roundedToHundredth(b); //Round answer to nearest hundredth
         return b;
     }
 
@@ -39,8 +39,8 @@ public class LinearEquation {
     /* Calculates and returns the slope of the line between (x1, y1) and
        (x2, y2), rounded to the nearest hundredth */
     public double slope() {
-        double slope = ((double)(y2 - y1)) / (x2 - x1);
-        slope = roundedToHundredth(slope);
+        double slope = ((double)(y2 - y1)) / (x2 - x1); //Slope
+        slope = roundedToHundredth(slope); //Round answer to nearest hundredth
         return slope;
     }
 
@@ -70,52 +70,52 @@ public class LinearEquation {
                subtraction!
      */
     public String equation() { //FIX THIS EQUATION METHOD
-        int numerator = y2 - y1;
-        int denominator = x2 - x1;
-        String slopeFrac = "";
-        double yIntTxt = 0;
-        if (denominator == 0) {
+        int numerator = y2 - y1; //rise
+        int denominator = x2 - x1; //run
+        String slopeFrac = ""; //initialization of slopeFrac
+        double yIntTxt = 0; //initialization of yIntTxt
+        if (denominator == 0) { //if slope is divided by 0
             slopeFrac += "";
-        } else if((((double)numerator) / denominator) == 1) {
+        } else if((((double)numerator) / denominator) == 1) { //if slope is equal to 1
             slopeFrac += "";
-        } else if ((((double)numerator) / denominator) == -1) {
+        } else if ((((double)numerator) / denominator) == -1) { //if slope is equal to -1
             slopeFrac += "-";
-        } else if (numerator % denominator == 0) {
+        } else if (numerator % denominator == 0) { //if slope results in a whole number
             slopeFrac += numerator / denominator + "";
-        } else if ((numerator < 0) && (denominator < 0)) {
+        } else if ((numerator < 0) && (denominator < 0)) { //if there are negative signs on both rise and run
             numerator = Math.abs(numerator);
             denominator = Math.abs(denominator);
             slopeFrac += numerator + "/" + denominator;
-        } else if (denominator < 0) {
+        } else if (denominator < 0) { //if denominator has a negative sign
             slopeFrac += (numerator *-1) + "/" + Math.abs(denominator);
-        } else {
+        } else { //if none of these conditions are met, then just print the slope in fraction form
             slopeFrac += numerator + "/" + denominator;
         }
-        if (yIntercept() < 0) {
+        if (yIntercept() < 0) { //if y-int is less than 0
             yIntTxt = Math.abs(yIntercept());
-        } else if (yIntercept() == 0) {
+        } else if (yIntercept() == 0) { //if y-int is equal to 0
             yIntTxt = 0;
-        } else {
+        } else { //if none of these requirements are met
             yIntTxt = yIntercept();
         }
-        if ((((double)numerator)/denominator) == 0) {
-            if (yIntTxt == 0) {
+        if ((((double)numerator)/denominator) == 0) { //if these is no slope
+            if (yIntTxt == 0) { //if these are no y-int
                 return "y = 0";
             }
-            else if (yIntercept()>0) {
+            else if (yIntercept()>0) { //if y-int is positive
                 return "y = " + yIntTxt;
             }
-            else {
+            else { //if y-int is negative
                 return "y = " + "-" + yIntTxt;
             }
-        } else {
-            if (yIntTxt == 0) {
+        } else { //if there is a slope
+            if (yIntTxt == 0) { //if there is no y-int
                 return "y = " + slopeFrac + "x";
             }
-            else if (yIntercept() < 0) {
+            else if (yIntercept() < 0) { //if y-int is negative
                 return "y = " + slopeFrac + "x" + " - " + yIntTxt;
             }
-            else {
+            else { //if y-int is postive
                 return "y = " + slopeFrac + "x" + " + " + yIntTxt;
             }
         }
@@ -124,10 +124,10 @@ public class LinearEquation {
 
     /* Returns a String of the coordinate point on the line that has the given x value, with
        both x and y coordinates as decimals to the nearest hundredth, e.g (-5.0, 6.75) */
-    public String coordinateForX(double xValue) {
+    public String coordinateForX(double xValue) { //Sub input to get value
         String coord = "";
-        double yval = (slope() * xValue) + yIntercept();
-        yval = roundedToHundredth(yval);
+        double yval = (slope() * xValue) + yIntercept(); //Sub x in for y
+        yval = roundedToHundredth(yval); //round
         coord += "(" + xValue + ", " + yval + ")";
         return coord;
     }
@@ -137,7 +137,7 @@ public class LinearEquation {
 
         HINT:  the Math.round method can help with this!
      */
-    public double roundedToHundredth(double toRound) {
+    public double roundedToHundredth(double toRound) { //round to hundredth
         double giveVal = Math.round(toRound * 100) / 100.0;
         return giveVal;
     }
@@ -154,7 +154,7 @@ public class LinearEquation {
       equation(), slope(), yIntercept(), distance().
 
       */
-    public String lineInfo() {
+    public String lineInfo() { //Prints info
         if ((x2 - x1) == 0) {
             return "These points are on a vertical line: x = " + x1;
         } else {
